@@ -22,6 +22,12 @@ namespace GroceryManagement.BL.Imlementation
             _groceryDb = groceryDb;
             _mapper = mapper;
         }
+        private string GenerateInvoiceNo()
+        {
+            var datePart = DateTime.Now.ToString("yyyyMMdd");
+            var randomPart = Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
+            return $"INV-{datePart}-{randomPart}";
+        }
         public async Task AddStock(StocksDto stockDto)
         {
             try
@@ -30,10 +36,10 @@ namespace GroceryManagement.BL.Imlementation
                 {
                     throw new ArgumentNullException("Parameters can not be null");
                 }
-                var stock=await _groceryDb.Stocks_tbl.FirstOrDefaultAsync(x=>x.InvoiceNo==stockDto.InvoiceNo);
-                if (stock != null)
+                var stock = await _groceryDb.Stocks_tbl.FirstOrDefaultAsync(c => c.Id == stockDto.ItemId);
+                if (stock?.Quantity >= 100)
                 {
-                    throw new Exception($"Stocks can not be entered with invoice no : {stockDto.InvoiceNo} because Invoice No already exists");
+                    throw new ArgumentException($"Item with ID {stockDto.ItemId} already exists in sufficient quantity");
                 }
                 var existingCategory = await _groceryDb.Items_tbl.FirstOrDefaultAsync(c => c.Id == stockDto.ItemId);
                 if (existingCategory == null)
@@ -41,6 +47,7 @@ namespace GroceryManagement.BL.Imlementation
                     throw new ArgumentException($"Item with ID {stockDto.ItemId} does not exist.");
                 }
                 var stockModel = _mapper.Map<Stocks>(stockDto);
+                stockModel.InvoiceNo = GenerateInvoiceNo();
                 stockModel.CategoryId = existingCategory?.CategoryId;
                 stockModel.CreatedDate = DateTime.Now;
                 stockModel.ModifiedDate = null;

@@ -15,8 +15,8 @@ namespace GroceryManagement.Dtos
         [Required(ErrorMessage = "Invoice date is required")]
         public DateTime InvoiceDate { get; set; } = DateTime.Now;
 
-        [Required(ErrorMessage = "Invoice number is required")]
-        public string InvoiceNo { get; set; }
+        //[Required(ErrorMessage = "Invoice number is required")]
+        //public string InvoiceNo { get; set; }
 
         [Required(ErrorMessage = "Dealer name is required")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Dealer name must be between 2 and 100 characters")]
