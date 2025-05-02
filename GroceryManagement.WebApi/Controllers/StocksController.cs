@@ -29,5 +29,18 @@ namespace GroceryManagement.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllStocksDetails()
+        {
+            try
+            {
+                var data = await _stock.GetAllStocks();
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

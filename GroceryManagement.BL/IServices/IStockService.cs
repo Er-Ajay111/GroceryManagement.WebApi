@@ -10,7 +10,7 @@ namespace GroceryManagement.BL.IServices
     public interface IStockService
     {
         Task AddStock(StocksDto stockDto);
-        //Task<List<StocksDto>> GetAllStocks();
+        Task<List<StocksDto>> GetAllStocks();
         //Task<StocksDto> GetStockById(int id);
         //Task UpdateStock(StocksDto stockDto);
         //Task DeleteStock(int id);

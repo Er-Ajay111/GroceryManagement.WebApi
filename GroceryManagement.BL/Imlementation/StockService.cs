@@ -61,5 +61,23 @@ namespace GroceryManagement.BL.Imlementation
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<List<StocksDto>> GetAllStocks()
+        {
+            try
+            {
+               var allStocks =await _groceryDb.Stocks_tbl.ToListAsync();
+                if (allStocks.Count<=0)
+                {
+                    throw new Exception("No stocks found");
+                }
+                var stockDto = _mapper.Map<List<StocksDto>>(allStocks);
+                return stockDto;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
