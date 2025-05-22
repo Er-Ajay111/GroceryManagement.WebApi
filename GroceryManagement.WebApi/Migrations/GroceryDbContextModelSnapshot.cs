@@ -51,7 +51,7 @@ namespace GroceryManagement.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category_tbl");
+                    b.ToTable("Category_tbl", (string)null);
                 });
 
             modelBuilder.Entity("GroceryManagement.DB.Models.Customers", b =>
@@ -95,7 +95,7 @@ namespace GroceryManagement.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers_tbl");
+                    b.ToTable("Customers_tbl", (string)null);
                 });
 
             modelBuilder.Entity("GroceryManagement.DB.Models.Items", b =>
@@ -132,7 +132,7 @@ namespace GroceryManagement.WebApi.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Items_tbl");
+                    b.ToTable("Items_tbl", (string)null);
                 });
 
             modelBuilder.Entity("GroceryManagement.DB.Models.OrderItems", b =>
@@ -184,7 +184,7 @@ namespace GroceryManagement.WebApi.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems_tbl");
+                    b.ToTable("OrderItems_tbl", (string)null);
                 });
 
             modelBuilder.Entity("GroceryManagement.DB.Models.Orders", b =>
@@ -217,7 +217,7 @@ namespace GroceryManagement.WebApi.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders_tbl");
+                    b.ToTable("Orders_tbl", (string)null);
                 });
 
             modelBuilder.Entity("GroceryManagement.DB.Models.Stocks", b =>
@@ -275,7 +275,7 @@ namespace GroceryManagement.WebApi.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("Stocks_tbl");
+                    b.ToTable("Stocks_tbl", (string)null);
                 });
 
             modelBuilder.Entity("GroceryManagement.DB.Models.Items", b =>

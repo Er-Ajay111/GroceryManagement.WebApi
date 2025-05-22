@@ -1,5 +1,6 @@
 ﻿using GroceryManagement.BL.IServices;
 using GroceryManagement.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,9 +16,10 @@ namespace GroceryManagement.WebApi.Controllers
         {
             _service = service;
         }
+        [Authorize(Roles ="Admin,Vendor")]
         [HttpPost]
         public async Task<IActionResult> AddNewCategory(CategoryDto categoryDto)
-        {
+         {
             try
             {
                 await _service.AddCategory(categoryDto);
@@ -28,6 +30,7 @@ namespace GroceryManagement.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAllCategoriesDetails()
         {
@@ -41,6 +44,7 @@ namespace GroceryManagement.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles ="Admin")]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetCategoryDetailsById(int id)
         {
@@ -54,6 +58,7 @@ namespace GroceryManagement.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public async Task<IActionResult> UpdateCategoryDetails(CategoryDto categoryDto)
         {
@@ -67,6 +72,7 @@ namespace GroceryManagement.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {

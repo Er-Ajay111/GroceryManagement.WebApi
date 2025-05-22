@@ -46,7 +46,6 @@ namespace GroceryManagement.BL.Imlementation
                 throw new Exception(ex.Message);
             }
         }
-
         public async Task DeleteCategory(int id)
         {
             try

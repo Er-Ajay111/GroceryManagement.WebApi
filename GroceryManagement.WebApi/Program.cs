@@ -3,6 +3,7 @@ using GroceryManagement.BL.Imlementation;
 using GroceryManagement.BL.IServices;
 using GroceryManagement.BL.Utility;
 using GroceryManagement.DB.Data;
+using GroceryManagement.WebApi.Helper;
 using Microsoft.EntityFrameworkCore;
 
 namespace GroceryManagement.WebApi
@@ -28,6 +29,8 @@ namespace GroceryManagement.WebApi
             builder.Services.AddScoped<IItemService, ItemService>();
             builder.Services.AddScoped<IStockService, StockService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.AddTokenConfiguration();
+            builder.Services.AddAuthentication();
 
             var app = builder.Build();
 
